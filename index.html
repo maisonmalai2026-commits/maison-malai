@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Malai – La Laiterie du Quotidien</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:       #3B7A50;
+      --green-light: #5A9E6E;
+      --green-pale:  #EBF5EF;
+      --cream:       #FDF8EE;
+      --cream-dark:  #F2E9D2;
+      --sky:         #5BADD4;
+      --sky-pale:    #E0F2FC;
+      --orange:      #E07A3A;
+      --brown-dark:  #231410;
+      --text-dark:   #1A2B1D;
+      --text-mid:    #4A5E4D;
+      --text-light:  #7A9180;
+      --white:       #FFFFFF;
+      --r-sm: 8px; --r-md: 16px; --r-lg: 28px; --r-xl: 48px;
+      --sh-soft: 0 4px 24px rgba(44,24,16,.08);
+      --sh-med:  0 8px 40px rgba(44,24,16,.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(253,248,238,.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1.5px solid rgba(59,122,80,.1);
+    }
+    .nav-inner {
+      max-width: 1160px; margin: 0 auto; padding: 0 24px;
+      height: 66px; display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .nav-logo-img {
+      width: 36px; height: 36px; border-radius: 50%;
+      overflow: hidden; border: 2px solid var(--green-pale);
+    }
+    .nav-logo-img img { width: 100%; height: 100%; object-fit: cover; }
+    .nav-logo-text {
+      font-family: 'Fraunces', serif; font-size: 1.3rem;
+      font-weight: 900; letter-spacing: -.025em; color: var(--green);
+    }
+    .nav-logo-text b { color: var(--orange); font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      font-size: .875rem; font-weight: 500; color: var(--text-mid);
+      padding: 7px 15px; border-radius: 20px;
+      transition: all .2s;
+    }
+    .nav-links a:hover { color: var(--green); background: var(--green-pale); }
+    .nav-cta {
+      background: var(--green) !important; color: var(--white) !important;
+      font-weight: 600 !important; padding: 8px 20px !important;
+      box-shadow: 0 3px 12px rgba(59,122,80,.3);
+    }
+    .nav-cta:hover { background: var(--green-light) !important; color: var(--white) !important; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--green); border-radius: 2px; transition: all .3s;
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      padding: 10px 24px 18px; gap: 2px;
+      border-top: 1px solid var(--green-pale);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: .95rem; font-weight: 500; color: var(--text-mid);
+      padding: 10px 0; border-bottom: 1px solid var(--green-pale);
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--green); }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .hero {
+      min-height: calc(100vh - 66px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; overflow: hidden; position: relative;
+    }
+    .hero-wave {
+      position: absolute; right: 0; top: 0;
+      width: 52%; height: 100%;
+      background: linear-gradient(140deg, #D8EEE0 0%, #C8E4D0 100%);
+      clip-path: polygon(11% 0%,100% 0%,100% 100%,0% 100%);
+      z-index: 0;
+    }
+    .hero-dots {
+      position: absolute; top: 56px; right: 56px;
+      width: 108px; height: 108px;
+      background-image: radial-gradient(circle,var(--green-light) 1.5px,transparent 1.5px);
+      background-size: 18px 18px; opacity: .22; z-index: 1; pointer-events: none;
+    }
+    .hero-dots-bl {
+      position: absolute; bottom: 72px; left: 36px;
+      width: 76px; height: 76px;
+      background-image: radial-gradient(circle,var(--sky) 1.5px,transparent 1.5px);
+      background-size: 15px 15px; opacity: .28; z-index: 1; pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 64px 48px 64px 60px; max-width: 560px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--sky-pale); border: 1.5px solid rgba(91,173,212,.28);
+      color: #3685AC; font-size: .75rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 22px;
+    }
+    .eyebrow-dot {
+      width: 6px; height: 6px; background: var(--sky);
+      border-radius: 50%; flex-shrink: 0;
+    }
+    .hero-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem,4.8vw,3.9rem);
+      font-weight: 900; line-height: 1.07;
+      letter-spacing: -.03em; color: var(--text-dark);
+      margin-bottom: 18px;
+    }
+    .hero-headline em { font-style: italic; color: var(--green); }
+    .hero-headline .underline-word {
+      position: relative; display: inline-block;
+    }
+    .hero-headline .underline-word::after {
+      content: ''; position: absolute; bottom: 3px; left: 0;
+      width: 100%; height: 7px;
+      background: var(--orange); opacity: .22;
+      border-radius: 4px; z-index: -1;
+    }
+    .hero-sub {
+      font-size: 1.03rem; color: var(--text-mid);
+      line-height: 1.68; margin-bottom: 36px; max-width: 430px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: .93rem; font-weight: 600;
+      padding: 14px 28px; border-radius: var(--r-xl); border: none; cursor: pointer;
+      transition: all .25s; box-shadow: 0 4px 18px rgba(59,122,80,.35);
+    }
+    .btn-primary:hover {
+      background: var(--green-light); transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(59,122,80,.4);
+    }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--text-mid); font-size: .88rem; font-weight: 500;
+      background: none; border: none; cursor: pointer; transition: color .2s;
+    }
+    .btn-ghost:hover { color: var(--green); }
+    .hero-trust {
+      margin-top: 44px; display: flex; align-items: center;
+      gap: 22px; flex-wrap: wrap;
+    }
+    .trust-pill {
+      display: flex; align-items: center; gap: 7px;
+      font-size: .78rem; color: var(--text-light); font-weight: 500;
+    }
+    .trust-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    /* mascot column */
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: flex-end;
+      padding: 40px 32px 0; min-height: 520px;
+    }
+    .mascot-frame { position: relative; width: 100%; max-width: 420px; }
+    .mascot-blob {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 80%; height: 80%;
+      background: radial-gradient(ellipse,var(--green) 0%,var(--green-light) 100%);
+      border-radius: 60% 40% 55% 45%/50% 60% 40% 50%;
+      opacity: .1;
+    }
+    .mascot-ring {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      width: 68%; height: 68%;
+      border: 2.5px dashed rgba(59,122,80,.18);
+      border-radius: 50%;
+      animation: spin-slow 22s linear infinite;
+    }
+    @keyframes spin-slow { to { transform: translateX(-50%) rotate(360deg); } }
+    .mascot-img {
+      position: relative; z-index: 2; width: 100%; object-fit: contain;
+      filter: drop-shadow(0 14px 44px rgba(44,24,16,.16));
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-11px); }
+    }
+    .badge-float {
+      position: absolute; background: var(--white);
+      border: 2px solid var(--green-pale); border-radius: var(--r-md);
+      padding: 9px 14px; box-shadow: var(--sh-soft);
+      font-size: .77rem; font-weight: 700;
+      white-space: nowrap; z-index: 3;
+    }
+    .badge-float-1 {
+      top: 16%; right: -8px; color: var(--green);
+      animation: fb1 6s ease-in-out infinite;
+    }
+    .badge-float-2 {
+      bottom: 22%; left: -16px;
+      background: var(--orange); color: var(--white);
+      animation: fb2 7s ease-in-out infinite;
+    }
+    @keyframes fb1 {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-8px) rotate(2deg); }
+    }
+    @keyframes fb2 {
+      0%,100% { transform: translateY(0) rotate(1.5deg); }
+      50%      { transform: translateY(-10px) rotate(-1.5deg); }
+    }
+
+    /* ── MARQUEE ─────────────────────────────────────── */
+    .marquee-strip {
+      background: var(--green); padding: 11px 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; width: max-content;
+      animation: marquee 26s linear infinite;
+    }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 0 28px; white-space: nowrap;
+      color: rgba(255,255,255,.85); font-size: .8rem;
+      font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .m-sep { width: 4px; height: 4px; background: rgba(255,255,255,.4); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── PRODUCTS ────────────────────────────────────── */
+    .products-section { padding: 92px 0 76px; }
+    .section-wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: ''; width: 22px; height: 2px;
+      background: var(--green); border-radius: 2px;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.85rem,3.4vw,2.75rem);
+      font-weight: 800; line-height: 1.13;
+      letter-spacing: -.025em; color: var(--text-dark);
+    }
+    .products-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 48px;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .products-header-sub {
+      font-size: .97rem; color: var(--text-mid);
+      line-height: 1.62; margin-top: 10px; max-width: 420px;
+    }
+    .products-grid {
+      display: grid; grid-template-columns: 1.45fr 1fr;
+      grid-template-rows: 1fr 1fr; gap: 18px;
+    }
+    /* Featured paneer */
+    .card-featured {
+      grid-row: 1/3; background: var(--white);
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: var(--sh-soft); border: 1.5px solid rgba(59,122,80,.07);
+      display: flex; flex-direction: column;
+      transition: transform .3s,box-shadow .3s;
+    }
+    .card-featured:hover { transform: translateY(-4px); box-shadow: var(--sh-med); }
+    .card-side {
+      background: var(--white); border-radius: var(--r-md); overflow: hidden;
+      box-shadow: var(--sh-soft); border: 1.5px solid rgba(59,122,80,.07);
+      display: flex; align-items: center;
+      transition: transform .3s,box-shadow .3s;
+    }
+    .card-side:hover { transform: translateY(-3px); box-shadow: var(--sh-med); }
+    .card-img-featured {
+      height: 260px;
+      background: linear-gradient(135deg,var(--cream-dark) 0%,var(--cream) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .card-img-featured::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center,transparent 40%,rgba(59,122,80,.05) 100%);
+    }
+    .card-img-side {
+      width: 108px; min-width: 108px; height: 108px;
+      background: linear-gradient(135deg,var(--cream-dark) 0%,var(--cream) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ph-lg { width: 110px; height: 110px; opacity: .22; }
+    .ph-sm { width: 52px; height: 52px; opacity: .25; }
+    .card-body-featured {
+      padding: 26px 30px 30px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .card-body-side { padding: 16px 20px; flex: 1; }
+    .product-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .69rem; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--green);
+      background: var(--green-pale); padding: 4px 10px; border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .product-tag-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+    .product-name-lg {
+      font-family: 'Fraunces', serif; font-size: 1.85rem;
+      font-weight: 800; letter-spacing: -.025em;
+      color: var(--text-dark); margin-bottom: 8px; line-height: 1.1;
+    }
+    .product-name-sm {
+      font-family: 'Fraunces', serif; font-size: 1.08rem;
+      font-weight: 700; color: var(--text-dark); margin-bottom: 4px;
+    }
+    .product-desc {
+      font-size: .88rem; color: var(--text-mid);
+      line-height: 1.58; margin-bottom: 18px;
+    }
+    .product-desc-sm {
+      font-size: .77rem; color: var(--text-mid);
+      line-height: 1.52; margin-bottom: 10px;
+    }
+    .price-row {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-top: auto;
+    }
+    .price-na { font-size: .81rem; color: var(--text-light); font-style: italic; }
+    .btn-inquire {
+      background: var(--green); color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: .86rem; font-weight: 600;
+      padding: 10px 22px; border-radius: 24px; border: none; cursor: pointer;
+      transition: all .22s; letter-spacing: .01em;
+    }
+    .btn-inquire:hover { background: var(--green-light); transform: translateY(-1px); }
+    .badge-soon {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--sky); color: var(--white);
+      font-size: .69rem; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; padding: 5px 12px; border-radius: 12px;
+    }
+    .badge-soon-dot { width: 5px; height: 5px; background: rgba(255,255,255,.7); border-radius: 50%; }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    .about-section {
+      background: var(--green); padding: 92px 0;
+      position: relative; overflow: hidden;
+    }
+    .about-circle {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,.04); pointer-events: none;
+    }
+    .about-inner {
+      max-width: 1160px; margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 68px; align-items: center;
+    }
+    .about-label { color: rgba(255,255,255,.58) !important; }
+    .about-label::before { background: rgba(255,255,255,.38) !important; }
+    .about-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.9rem,3.6vw,2.9rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -.03em; color: var(--white); margin-bottom: 22px;
+    }
+    .about-title em { font-style: italic; opacity: .72; }
+    .about-body {
+      font-size: .98rem; color: rgba(255,255,255,.76);
+      line-height: 1.72; margin-bottom: 30px;
+    }
+    .founder-card {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--r-md); padding: 15px 18px;
+    }
+    .founder-av {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      border: 2px solid rgba(255,255,255,.28);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-size: 1.2rem;
+      font-weight: 800; color: var(--white); flex-shrink: 0;
+    }
+    .founder-name { font-weight: 700; color: var(--white); font-size: .93rem; }
+    .founder-role { font-size: .76rem; color: rgba(255,255,255,.56); margin-top: 2px; }
+    .about-values { display: flex; flex-direction: column; gap: 18px; }
+    .about-val {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--r-md); padding: 20px 22px;
+      transition: background .2s;
+    }
+    .about-val:hover { background: rgba(255,255,255,.13); }
+    .about-val-title {
+      font-family: 'Fraunces', serif; font-size: 1.02rem;
+      font-weight: 700; color: var(--white); margin-bottom: 5px;
+    }
+    .about-val-body { font-size: .84rem; color: rgba(255,255,255,.62); line-height: 1.6; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer { background: var(--brown-dark); color: var(--white); padding: 52px 0 28px; }
+    .footer-inner { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px; padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,.09); margin-bottom: 28px;
+    }
+    .footer-logo {
+      font-family: 'Fraunces', serif; font-size: 1.4rem;
+      font-weight: 900; letter-spacing: -.02em; margin-bottom: 10px;
+    }
+    .footer-logo span { color: var(--orange); }
+    .footer-tagline { font-size: .83rem; color: rgba(255,255,255,.45); line-height: 1.62; max-width: 270px; }
+    .footer-col-title {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.36); margin-bottom: 14px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 9px; }
+    .footer-links a { font-size: .86rem; color: rgba(255,255,255,.56); transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .76rem; color: rgba(255,255,255,.28); gap: 16px; flex-wrap: wrap;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-socials a {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.55); transition: all .2s;
+    }
+    .footer-socials a:hover { background: rgba(255,255,255,.15); color: var(--white); }
+
+    /* ── CHATBOT ─────────────────────────────────────── */
+    .chat-fab {
+      position: fixed; bottom: 26px; right: 26px; z-index: 990;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--green); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(59,122,80,.46);
+      transition: all .25s; overflow: hidden; padding: 0;
+    }
+    .chat-fab:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(59,122,80,.55); }
+    .chat-fab img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .chat-pulse {
+      position: absolute; top: -2px; right: -2px;
+      width: 14px; height: 14px; background: var(--orange);
+      border-radius: 50%; border: 2px solid var(--cream);
+      animation: pulse-ring 2.2s ease infinite;
+    }
+    @keyframes pulse-ring {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.25); opacity: .75; }
+    }
+    .chat-window {
+      position: fixed; bottom: 96px; right: 26px; z-index: 989;
+      width: 336px; background: var(--white); border-radius: var(--r-lg);
+      box-shadow: 0 16px 64px rgba(44,24,16,.22);
+      display: flex; flex-direction: column; overflow: hidden;
+      max-height: 490px;
+      transform: scale(.84) translateY(16px);
+      transform-origin: bottom right;
+      opacity: 0; pointer-events: none;
+      transition: all .28s cubic-bezier(.34,1.56,.64,1);
+    }
+    .chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1; pointer-events: all;
+    }
+    .chat-head {
+      background: var(--green); padding: 15px 18px;
+      display: flex; align-items: center; gap: 11px;
+    }
+    .chat-head-av {
+      width: 38px; height: 38px; border-radius: 50%; overflow: hidden;
+      flex-shrink: 0; border: 2px solid rgba(255,255,255,.25);
+    }
+    .chat-head-av img { width: 100%; height: 100%; object-fit: cover; }
+    .chat-bot-name { font-weight: 700; color: var(--white); font-size: .93rem; }
+    .chat-bot-status {
+      display: flex; align-items: center; gap: 5px;
+      font-size: .7rem; color: rgba(255,255,255,.68);
+    }
+    .chat-status-dot { width: 6px; height: 6px; background: #7EE88A; border-radius: 50%; }
+    .chat-x {
+      margin-left: auto; background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.65); width: 28px; height: 28px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .chat-x:hover { background: rgba(255,255,255,.15); color: var(--white); }
+    .chat-msgs {
+      flex: 1; overflow-y: auto; padding: 18px 14px;
+      background: var(--cream); display: flex;
+      flex-direction: column; gap: 11px;
+      min-height: 180px; max-height: 290px;
+      scrollbar-width: thin; scrollbar-color: var(--green-pale) transparent;
+    }
+    .chat-msgs::-webkit-scrollbar { width: 3px; }
+    .chat-msgs::-webkit-scrollbar-thumb { background: var(--green-pale); border-radius: 2px; }
+    .chat-msg { display: flex; gap: 7px; align-items: flex-start; animation: msg-in .28s ease; }
+    .chat-msg.user { flex-direction: row-reverse; }
+    @keyframes msg-in {
+      from { opacity: 0; transform: translateY(7px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .msg-av {
+      width: 26px; height: 26px; border-radius: 50%; overflow: hidden;
+      flex-shrink: 0; background: var(--green-pale);
+    }
+    .msg-av img { width: 100%; height: 100%; object-fit: cover; }
+    .msg-bubble {
+      background: var(--white); border-radius: 14px 14px 14px 4px;
+      padding: 9px 13px; font-size: .82rem; color: var(--text-dark);
+      line-height: 1.5; max-width: 224px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .chat-msg.user .msg-bubble {
+      background: var(--green); color: var(--white);
+      border-radius: 14px 14px 4px 14px;
+    }
+    .chat-input-row {
+      padding: 11px 14px; background: var(--white);
+      border-top: 1px solid rgba(59,122,80,.09);
+      display: flex; gap: 9px; align-items: center;
+    }
+    .chat-input {
+      flex: 1; border: 1.5px solid rgba(59,122,80,.18);
+      border-radius: 22px; padding: 8px 15px;
+      font-family: 'DM Sans', sans-serif; font-size: .84rem;
+      color: var(--text-dark); background: var(--cream); outline: none;
+      transition: border-color .2s;
+    }
+    .chat-input:focus { border-color: var(--green); background: var(--white); }
+    .chat-input::placeholder { color: var(--text-light); }
+    .chat-send-btn {
+      width: 36px; height: 36px; background: var(--green); border: none;
+      border-radius: 50%; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .chat-send-btn:hover { background: var(--green-light); transform: scale(1.08); }
+
+    /* ── SCROLL FADE ─────────────────────────────────── */
+    .fade-up { opacity: 0; transform: translateY(26px); transition: opacity .6s ease,transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-wave { display: none; }
+      .hero-content { padding: 44px 22px 28px; max-width: 100%; order: 2; }
+      .hero-visual {
+        order: 1; min-height: 300px; padding: 28px 24px 0;
+        background: linear-gradient(140deg,#D8EEE0 0%,#C8E4D0 100%);
+        border-radius: 0 0 36px 36px;
+      }
+      .badge-float, .hero-trust { display: none; }
+      .products-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .card-featured { grid-row: auto; }
+      .about-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .chat-window { width: calc(100vw - 48px); right: 14px; bottom: 86px; }
+      .chat-fab { right: 14px; bottom: 14px; }
+    }
+    @media (max-width: 580px) {
+      .card-side { flex-direction: column; }
+      .card-img-side { width: 100%; min-width: auto; height: 76px; }
+      .about-section { padding: 60px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══════════════════════════════════════════ -->
+<header class="site-header" id="top">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      <div class="nav-logo-img"><img src="images/mascot.jpg" alt="Maison Malai"></div>
+      <span class="nav-logo-text">Maison <b>Malai</b></span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#products">Produits</a></li>
+        <li><a href="#about">Notre Histoire</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#products" onclick="toggleMenu()">Produits</a>
+    <a href="#about" onclick="toggleMenu()">Notre Histoire</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+  </div>
+</header>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-wave" aria-hidden="true"></div>
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-dots-bl" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow">
+      <div class="eyebrow-dot"></div>
+      Laiterie Artisanale &middot; France
+    </div>
+    <h1 class="hero-headline">
+      La <em>fraîcheur</em><br>
+      du terroir,<br>
+      <span class="underline-word">chaque jour.</span>
+    </h1>
+    <p class="hero-sub">
+      Maison Malai brings you the everyday dairy essentials you love — fresh, pure, and crafted with care. Inspired by India's beloved dairy tradition, made for every French kitchen.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M7 3L12 7.5L7 12M3 7.5H12" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voir nos produits
+      </a>
+      <button class="btn-ghost" onclick="openChat()">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M13 9.5A1.25 1.25 0 0111.75 11H3.5L1 13.5V3A1.25 1.25 0 012.25 1.75H11.75A1.25 1.25 0 0113 3V9.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Ask Maison
+      </button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-pill">
+        <div class="trust-dot" style="background:var(--green)"></div>
+        Fresh daily supply
+      </div>
+      <div class="trust-pill">
+        <div class="trust-dot" style="background:var(--sky)"></div>
+        100% natural
+      </div>
+      <div class="trust-pill">
+        <div class="trust-dot" style="background:var(--orange)"></div>
+        Family trusted
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="mascot-frame">
+      <div class="mascot-blob" aria-hidden="true"></div>
+      <div class="mascot-ring" aria-hidden="true"></div>
+      <img src="images/mascot.jpg" alt="Maison Malai mascot — cheerful cow chef" class="mascot-img">
+      <div class="badge-float badge-float-1">Pure &amp; Naturel</div>
+      <div class="badge-float badge-float-2">200g Paneer — Disponible !</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ════════════════════════════════════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item">Fraîcheur Garantie <span class="m-sep"></span></div>
+    <div class="marquee-item">Paneer 200g <span class="m-sep"></span></div>
+    <div class="marquee-item">Fait avec Passion <span class="m-sep"></span></div>
+    <div class="marquee-item">Maison Malai <span class="m-sep"></span></div>
+    <div class="marquee-item">Laiterie Artisanale <span class="m-sep"></span></div>
+    <div class="marquee-item">La Qualité du Quotidien <span class="m-sep"></span></div>
+    <div class="marquee-item">Fraîcheur Garantie <span class="m-sep"></span></div>
+    <div class="marquee-item">Paneer 200g <span class="m-sep"></span></div>
+    <div class="marquee-item">Fait avec Passion <span class="m-sep"></span></div>
+    <div class="marquee-item">Maison Malai <span class="m-sep"></span></div>
+    <div class="marquee-item">Laiterie Artisanale <span class="m-sep"></span></div>
+    <div class="marquee-item">La Qualité du Quotidien <span class="m-sep"></span></div>
+  </div>
+</div>
+
+<!-- ═══ PRODUCTS ══════════════════════════════════════════ -->
+<section class="products-section" id="products">
+  <div class="section-wrap">
+    <div class="products-header">
+      <div>
+        <div class="section-label">Nos Produits</div>
+        <h2 class="section-title">Simple. Pur.<br>Délicieux.</h2>
+        <p class="products-header-sub">Everyday dairy essentials crafted with the finest ingredients — from our kitchen to yours, every single day.</p>
+      </div>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Featured: 200g Paneer -->
+      <article class="card-featured fade-up">
+        <div class="card-img-featured">
+          <svg class="ph-lg" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="18" y="28" width="74" height="56" rx="10" fill="#3B7A50"/>
+            <rect x="26" y="36" width="58" height="40" rx="7" fill="#5A9E6E"/>
+            <rect x="34" y="44" width="42" height="24" rx="5" fill="#3B7A50"/>
+            <circle cx="55" cy="56" r="8" fill="#EBF5EF"/>
+            <path d="M18 58 Q30 48 42 58 Q55 68 68 58 Q80 48 92 58" stroke="white" stroke-width="1.5" fill="none" opacity="0.35"/>
+            <path d="M18 64 Q30 54 42 64 Q55 74 68 64 Q80 54 92 64" stroke="white" stroke-width="1.5" fill="none" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="card-body-featured">
+          <div class="product-tag"><div class="product-tag-dot"></div>Disponible maintenant</div>
+          <h3 class="product-name-lg">200g Paneer</h3>
+          <p class="product-desc">
+            Our fresh, hand-pressed paneer made from pure whole milk. Firm yet soft, perfect for tikka masala, palak paneer, or simply pan-fried with herbs. The everyday staple your kitchen has been waiting for.
+          </p>
+          <div class="price-row">
+            <span class="price-na">Price not available</span>
+            <button class="btn-inquire" onclick="openChat()">Inquire</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Coming Soon: Milky Whey -->
+      <article class="card-side fade-up d1">
+        <div class="card-img-side">
+          <svg class="ph-sm" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="26" cy="34" rx="16" ry="12" fill="#5BADD4" opacity="0.5"/>
+            <rect x="16" y="10" width="20" height="24" rx="7" fill="#5BADD4" opacity="0.35"/>
+            <path d="M22 10 Q26 4 30 10" stroke="#5BADD4" stroke-width="1.8" fill="none"/>
+          </svg>
+        </div>
+        <div class="card-body-side">
+          <h3 class="product-name-sm">Milky Whey</h3>
+          <p class="product-desc-sm">Nutritious whey drink, naturally rich in protein and goodness.</p>
+          <span class="badge-soon"><div class="badge-soon-dot"></div>Bientôt disponible</span>
+        </div>
+      </article>
+
+      <!-- Coming Soon: Curd -->
+      <article class="card-side fade-up d2">
+        <div class="card-img-side">
+          <svg class="ph-sm" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 22 Q8 12 26 12 Q44 12 44 22 L41 38 Q41 44 26 44 Q11 44 11 38 Z" fill="#E07A3A" opacity="0.35"/>
+            <ellipse cx="26" cy="22" rx="18" ry="7" fill="#FDF8EE" opacity="0.7"/>
+            <ellipse cx="26" cy="38" rx="15" ry="5" fill="#E07A3A" opacity="0.22"/>
+          </svg>
+        </div>
+        <div class="card-body-side">
+          <h3 class="product-name-sm">Curd</h3>
+          <p class="product-desc-sm">Set curd, smooth and tangy, from pure farm milk.</p>
+          <span class="badge-soon"><div class="badge-soon-dot"></div>Bientôt disponible</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ════════════════════════════════════════════ -->
+<section class="about-section" id="about">
+  <div class="about-circle" style="width:480px;height:480px;top:-140px;right:-100px;" aria-hidden="true"></div>
+  <div class="about-circle" style="width:280px;height:280px;bottom:-70px;left:-50px;" aria-hidden="true"></div>
+  <div class="about-inner">
+    <div class="fade-up">
+      <div class="section-label about-label">Notre Histoire</div>
+      <h2 class="about-title">
+        Dairy for <em>everyday life</em>,<br>crafted in France.
+      </h2>
+      <p class="about-body">
+        Maison Malai was born from a simple dream: to bring the reliable, nourishing dairy products that millions love in India to every kitchen in France. Founded by Abhimanyu, our mission is to make wholesome dairy as accessible as a morning baguette.
+        <br><br>
+        Inspired by Amul's legacy of trust and quality, we are building Maison Malai as France's everyday dairy companion — honest ingredients, fair prices, and the warmth of a home kitchen in every pack.
+      </p>
+      <div class="founder-card">
+        <div class="founder-av">A</div>
+        <div>
+          <div class="founder-name">Abhimanyu</div>
+          <div class="founder-role">CEO &amp; Founder, Maison Malai</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-values fade-up d1">
+      <div class="about-val">
+        <div class="about-val-title">Pure Ingredients Only</div>
+        <div class="about-val-body">We use whole milk and natural processes. No additives, no shortcuts — what goes in is exactly what comes out.</div>
+      </div>
+      <div class="about-val">
+        <div class="about-val-title">Accessible Every Day</div>
+        <div class="about-val-body">Great dairy should not be a luxury. Maison Malai is priced for every household, every day of the week.</div>
+      </div>
+      <div class="about-val">
+        <div class="about-val-title">A Bridge Between Cultures</div>
+        <div class="about-val-body">From India's rich dairy heritage to French culinary tradition — two great food cultures, together on your plate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Maison <span>Malai</span></div>
+        <p class="footer-tagline">La laiterie du quotidien. Bringing everyday dairy essentials to France with love, quality, and freshness in every pack.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <div class="footer-links">
+          <a href="#products">Nos Produits</a>
+          <a href="#about">Notre Histoire</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Nous contacter</div>
+        <div class="footer-links">
+          <a href="mailto:maisonmalai2026@gmail.com">maisonmalai2026@gmail.com</a>
+          <a href="https://www.instagram.com/malaimaison" target="_blank" rel="noopener noreferrer">@malaimaison</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&#169; 2026 Maison Malai. Tous droits r&#233;serv&#233;s.</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/malaimaison" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="mailto:maisonmalai2026@gmail.com" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ CHATBOT ═══════════════════════════════════════════ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with Maison" onclick="openChat()">
+  <img src="images/mascot.jpg" alt="">
+  <div class="chat-pulse" aria-hidden="true"></div>
+</button>
+
+<div class="chat-window" id="chatWindow" role="dialog" aria-label="Chat with Maison" aria-modal="true">
+  <div class="chat-head">
+    <div class="chat-head-av">
+      <img src="images/mascot.jpg" alt="Maison bot">
+    </div>
+    <div>
+      <div class="chat-bot-name">Maison</div>
+      <div class="chat-bot-status">
+        <div class="chat-status-dot"></div>
+        Online &middot; Ready to help
+      </div>
+    </div>
+    <button class="chat-x" onclick="closeChat()" aria-label="Close chat">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M1 1L12 12M12 1L1 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-input-row">
+    <input type="text" class="chat-input" id="chatInput"
+      placeholder="Ask me anything&#8230;" aria-label="Type a message"
+      onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="chat-send-btn" onclick="sendMsg()" aria-label="Send">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M12.5 7L1.5 1.5L4 7L1.5 12.5L12.5 7Z" fill="white"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  // ── MOBILE NAV ──────────────────────────────────────────
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ── SCROLL ANIMATIONS ───────────────────────────────────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.13 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // ── CHATBOT ─────────────────────────────────────────────
+  var chatReady = false;
+  var WELCOME = "Welcome! I am Maison, introducing you to all our products, starting with our 200g Paneer. How can I help you today?";
+
+  function openChat() {
+    var win = document.getElementById('chatWindow');
+    win.classList.add('open');
+    if (!chatReady) {
+      chatReady = true;
+      setTimeout(function() { addMsg(WELCOME, 'bot'); }, 380);
+    }
+  }
+
+  function closeChat() {
+    document.getElementById('chatWindow').classList.remove('open');
+  }
+
+  function addMsg(text, who) {
+    var box = document.getElementById('chatMsgs');
+    var wrap = document.createElement('div');
+    wrap.className = 'chat-msg ' + who;
+
+    if (who === 'bot') {
+      var av = document.createElement('div');
+      av.className = 'msg-av';
+      var img = document.createElement('img');
+      img.src = 'images/mascot.jpg';
+      img.alt = 'Maison';
+      av.appendChild(img);
+      wrap.appendChild(av);
+    }
+
+    var bub = document.createElement('div');
+    bub.className = 'msg-bubble';
+    bub.textContent = text;
+    wrap.appendChild(bub);
+    box.appendChild(wrap);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function sendMsg() {
+    var inp = document.getElementById('chatInput');
+    var txt = inp.value.trim();
+    if (!txt) return;
+    addMsg(txt, 'user');
+    inp.value = '';
+
+    setTimeout(function() {
+      var lo = txt.toLowerCase();
+      var reply;
+      if (lo.includes('paneer') || lo.includes('200g')) {
+        reply = "Our 200g Paneer is freshly pressed and ready to order! Please email us at maisonmalai2026@gmail.com for pricing and availability.";
+      } else if (lo.includes('price') || lo.includes('prix') || lo.includes('cost') || lo.includes('combien')) {
+        reply = "Pricing isn't listed online yet. Email us at maisonmalai2026@gmail.com and we'll get back to you quickly!";
+      } else if (lo.includes('whey') || lo.includes('curd') || lo.includes('fromage')) {
+        reply = "Milky Whey and Curd are coming soon! Follow us on Instagram @malaimaison for launch updates.";
+      } else if (lo.includes('instagram') || lo.includes('social') || lo.includes('follow')) {
+        reply = "Find us on Instagram at @malaimaison for updates, recipes, and behind-the-scenes from our dairy kitchen!";
+      } else if (lo.includes('contact') || lo.includes('email') || lo.includes('order') || lo.includes('commande')) {
+        reply = "Reach us at maisonmalai2026@gmail.com — we respond within 24 hours. We'd love to hear from you!";
+      } else if (lo.includes('bonjour') || lo.includes('hello') || lo.includes('hi') || lo.includes('salut')) {
+        reply = "Bonjour! I'm Maison, your friendly dairy guide. Ask me about our products, pricing, or anything else!";
+      } else if (lo.includes('founder') || lo.includes('abhimanyu') || lo.includes('who')) {
+        reply = "Maison Malai was founded by Abhimanyu, with a mission to bring everyday dairy essentials from India's rich tradition to French households.";
+      } else {
+        reply = "Great question! For more details, email us at maisonmalai2026@gmail.com or follow @malaimaison on Instagram.";
+      }
+      addMsg(reply, 'bot');
+    }, 680);
+  }
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    var win = document.getElementById('chatWindow');
+    var fab = document.getElementById('chatFab');
+    if (!win.contains(e.target) && !fab.contains(e.target)) {
+      win.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
