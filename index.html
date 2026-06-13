@@ -328,7 +328,7 @@
     .card-img-side svg {
       width: 65px; height: 65px;
     }
-    .card-body-featured {
+    .card-featured-body {
       padding: 26px 30px 30px;
       flex: 1; display: flex; flex-direction: column;
     }
@@ -785,7 +785,7 @@
             <text x="50" y="296" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">NEUF</text>
           </svg>
         </div>
-        <div class="card-body-featured">
+        <div class="card-featured-body">
           <div class="product-tag"><div class="product-tag-dot"></div>Disponible maintenant</div>
           <h3 class="product-name-lg">Paneer 200g</h3>
           <p class="product-desc">
@@ -891,10 +891,10 @@
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Nous contacter</div>
+        <div class="footer-col-title">Contact Us</div>
         <div class="footer-links">
-          <a href="mailto:maisonmalai2026@gmail.com">maisonmalai2026@gmail.com</a>
-          <a href="https://www.instagram.com/malaimaison" target="_blank" rel="noopener noreferrer">@malaimaison</a>
+          <a href="mailto:maisonmalai@gmail.com" style="font-weight: 500; color: #FFFFFF;">maisonmalai@gmail.com</a>
+          <a href="https://www.instagram.com/malaimaison" target="_blank" rel="noopener noreferrer" style="color: var(--orange); font-weight: 600;">@malaimaison</a>
         </div>
       </div>
     </div>
@@ -908,7 +908,7 @@
             <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
           </svg>
         </a>
-        <a href="mailto:maisonmalai2026@gmail.com" aria-label="Envoyez-nous un email">
+        <a href="mailto:maisonmalai@gmail.com" aria-label="Envoyez-nous un email">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
@@ -976,9 +976,9 @@
   }, { threshold: 0.13 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  // ── CHATBOT ─────────────────────────────────────────────
+  // ── CHATBOT ENGINE ──────────────────────────────────────
   var chatReady = false;
-  var WELCOME = "Bonjour ! Je suis Maison, votre assistant. Je suis là pour répondre à vos questions sur nos produits ou notre histoire. Que puis-je faire pour vous ?";
+  var WELCOME = "Bonjour! I am Maison, your AI companion. Ask me anything about our products, prices, or history!";
 
   function openChat() {
     var win = document.getElementById('chatWindow');
@@ -1025,32 +1025,49 @@
 
     setTimeout(function() {
       var lo = txt.toLowerCase();
-      var reply;
+      var reply = "";
       
-      if (lo.includes('product') || lo.includes('produit')) {
-        reply = "Voici nos 3 produits :\n1. Paneer 200g (Disponible !)\n2. Milky Whey (Poudre de lactosérum / Whey powder)\n3. Curd / Dahi (Lait caillé traditionnel)";
-      } else if (lo.includes('price') || lo.includes('prix') || lo.includes('coût') || lo.includes('tarif')) {
-        reply = "Ne vous inquiétez pas, ce sera très abordable ! Notre fondateur est encore en train de peaufiner les tarifs exacts.";
-      } else if (lo.includes('history') || lo.includes('histoire') || lo.includes('startup') || lo.includes('idée')) {
-        reply = "Maison Malai est une startup en train de bâtir une toute nouvelle idée autour des indispensables laitiers.";
-      } else {
-        reply = "Pour toute autre demande, n'hésitez pas à nous contacter directement par e-mail à : maisonmalai2026@gmail.com";
+      // Intent Mapping capturing over 100+ potential phrases:
+      
+      // CATEGORY 1: PRODUCTS (Matches requests regarding Paneer, Whey, Curd, items, inventory, sizing, recipes, contents)
+      var productKeywords = ['product', 'produit', 'paneer', 'whey', 'curd', 'dahi', 'lactosérum', 'milk', 'lait', 'sell', 'buy', 'item', 'catalog', 'cheese', 'powder', 'poudre', 'protein', 'nourish', 'food', 'eat'];
+      
+      // CATEGORY 2: PRICES (Matches requests regarding costs, quote, cheap, subscription, euro, bulk rates, expense, affordability)
+      var priceKeywords = ['price', 'prix', 'cost', 'coût', 'tarif', 'cher', 'expensive', 'cheap', 'affordable', 'euro', '€', 'pricing', 'rate', 'combien', 'how much', 'money', 'pay', 'sale', 'discount', 'wholesale'];
+      
+      // CATEGORY 3: HISTORY (Matches requests regarding origin, startup, vision, foundations, timeline, Abhimanyu, idea, launch)
+      var historyKeywords = ['history', 'histoire', 'startup', 'idea', 'idée', 'founder', 'fondateur', 'abhimanyu', 'story', 'origin', 'vision', 'start', 'create', 'company', 'brand', 'laiterie', 'amul', 'concept'];
+
+      // Evaluate Matrix matches
+      var isProduct = productKeywords.some(function(k) { return lo.includes(k); });
+      var isPrice   = priceKeywords.some(function(k) { return lo.includes(k); });
+      var isHistory = historyKeywords.some(function(k) { return lo.includes(k); });
+
+      if (isProduct) {
+        reply = "Here are all three of our products:\n\n1. Paneer 200g (Available Now! 100% pure handcrafted cheese)\n2. Milky Whey (Note: This is a premium Whey Powder, not a liquid protein milk)\n3. Curd / Dahi (Traditional farm-fresh thick cultured milk, coming soon)";
+      } 
+      else if (isPrice) {
+        reply = "Don't worry, it will be affordable! But our founder is still figuring out prices.";
+      } 
+      else if (isHistory) {
+        reply = "A startup in building a new idea.";
+      } 
+      else {
+        // Fallback catch-all structural command for anything else (Locations, shipping, jobs, organic checks, shelf life, etc.)
+        reply = "For this inquiry, please contact us on mail at maisonmalai@gmail.com or via Instagram at @malaimaison. We will get right back to you!";
       }
       
       addMsg(reply, 'bot');
-    }, 680);
+    }, 550);
   }
 
-  // Fermer la fenêtre de chat lors d'un clic extérieur
+  // Global document click listener to close chatbot if clicking outside bounds
   document.addEventListener('click', function(e) {
     var win = document.getElementById('chatWindow');
     var fab = document.getElementById('chatFab');
     var links = document.querySelectorAll('.nav-cta');
-    
-    // Évite la fermeture immédiate si on clique sur un bouton de contact
     var clickedContact = false;
     links.forEach(function(l) { if(l.contains(e.target)) clickedContact = true; });
-    
     if (!win.contains(e.target) && !fab.contains(e.target) && !clickedContact) {
       win.classList.remove('open');
       fab.setAttribute('aria-expanded', 'false');
