@@ -35,7 +35,7 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-    img { display: block; max-width: 100%; }
+    img, svg { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
@@ -56,9 +56,9 @@
     }
     .nav-logo-img {
       width: 36px; height: 36px; border-radius: 50%;
-      overflow: hidden; border: 2px solid var(--green-pale);
+      background: var(--green-pale); display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--green);
     }
-    .nav-logo-img img { width: 100%; height: 100%; object-fit: cover; }
     .nav-logo-text {
       font-family: 'Fraunces', serif; font-size: 1.3rem;
       font-weight: 900; letter-spacing: -.025em; color: var(--green);
@@ -89,6 +89,7 @@
       display: none; flex-direction: column;
       padding: 10px 24px 18px; gap: 2px;
       border-top: 1px solid var(--green-pale);
+      background: var(--cream);
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
@@ -157,7 +158,7 @@
     }
     .hero-sub {
       font-size: 1.03rem; color: var(--text-mid);
-      line-height: 1.68; margin-bottom: 36px; max-width: 430px;
+      line-height: 1.68; margin-bottom: 36px; max-width: 460px;
     }
     .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
     .btn-primary {
@@ -187,7 +188,7 @@
     }
     .trust-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
-    /* mascot column */
+    /* Mascotte */
     .hero-visual {
       position: relative; z-index: 2;
       display: flex; justify-content: center; align-items: flex-end;
@@ -209,8 +210,8 @@
       animation: spin-slow 22s linear infinite;
     }
     @keyframes spin-slow { to { transform: translateX(-50%) rotate(360deg); } }
-    .mascot-img {
-      position: relative; z-index: 2; width: 100%; object-fit: contain;
+    .mascot-svg-wrapper {
+      position: relative; z-index: 2; width: 100%; height: auto;
       filter: drop-shadow(0 14px 44px rgba(44,24,16,.16));
       animation: float 5s ease-in-out infinite;
     }
@@ -285,13 +286,12 @@
     }
     .products-header-sub {
       font-size: .97rem; color: var(--text-mid);
-      line-height: 1.62; margin-top: 10px; max-width: 420px;
+      line-height: 1.62; margin-top: 10px; max-width: 450px;
     }
     .products-grid {
       display: grid; grid-template-columns: 1.45fr 1fr;
       grid-template-rows: 1fr 1fr; gap: 18px;
     }
-    /* Featured paneer */
     .card-featured {
       grid-row: 1/3; background: var(--white);
       border-radius: var(--r-lg); overflow: hidden;
@@ -308,7 +308,7 @@
     }
     .card-side:hover { transform: translateY(-3px); box-shadow: var(--sh-med); }
     .card-img-featured {
-      height: 260px;
+      height: 340px;
       background: linear-gradient(135deg,var(--cream-dark) 0%,var(--cream) 100%);
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
@@ -317,13 +317,17 @@
       content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse at center,transparent 40%,rgba(59,122,80,.05) 100%);
     }
+    .card-img-featured svg {
+      width: 100%; height: 100%; max-height: 280px; padding: 10px;
+    }
     .card-img-side {
       width: 108px; min-width: 108px; height: 108px;
       background: linear-gradient(135deg,var(--cream-dark) 0%,var(--cream) 100%);
       display: flex; align-items: center; justify-content: center;
     }
-    .ph-lg { width: 110px; height: 110px; opacity: .22; }
-    .ph-sm { width: 52px; height: 52px; opacity: .25; }
+    .card-img-side svg {
+      width: 65px; height: 65px;
+    }
     .card-body-featured {
       padding: 26px 30px 30px;
       flex: 1; display: flex; flex-direction: column;
@@ -409,8 +413,8 @@
     }
     .founder-av {
       width: 50px; height: 50px; border-radius: 50%;
-      background: rgba(255,255,255,.18);
-      border: 2px solid rgba(255,255,255,.28);
+      background: var(--orange);
+      border: 2px solid rgba(255,255,255,.4);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Fraunces', serif; font-size: 1.2rem;
       font-weight: 800; color: var(--white); flex-shrink: 0;
@@ -444,7 +448,7 @@
       font-weight: 900; letter-spacing: -.02em; margin-bottom: 10px;
     }
     .footer-logo span { color: var(--orange); }
-    .footer-tagline { font-size: .83rem; color: rgba(255,255,255,.45); line-height: 1.62; max-width: 270px; }
+    .footer-tagline { font-size: .83rem; color: rgba(255,255,255,.45); line-height: 1.62; max-width: 290px; }
     .footer-col-title {
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       text-transform: uppercase; color: rgba(255,255,255,.36); margin-bottom: 14px;
@@ -475,7 +479,7 @@
       transition: all .25s; overflow: hidden; padding: 0;
     }
     .chat-fab:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(59,122,80,.55); }
-    .chat-fab img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .chat-fab svg { width: 50%; height: 50%; fill: var(--white); }
     .chat-pulse {
       position: absolute; top: -2px; right: -2px;
       width: 14px; height: 14px; background: var(--orange);
@@ -506,10 +510,10 @@
       display: flex; align-items: center; gap: 11px;
     }
     .chat-head-av {
-      width: 38px; height: 38px; border-radius: 50%; overflow: hidden;
-      flex-shrink: 0; border: 2px solid rgba(255,255,255,.25);
+      width: 34px; height: 34px; border-radius: 50%; background: var(--white);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .chat-head-av img { width: 100%; height: 100%; object-fit: cover; }
+    .chat-head-av svg { width: 65%; height: 65%; fill: var(--green); }
     .chat-bot-name { font-weight: 700; color: var(--white); font-size: .93rem; }
     .chat-bot-status {
       display: flex; align-items: center; gap: 5px;
@@ -539,15 +543,17 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .msg-av {
-      width: 26px; height: 26px; border-radius: 50%; overflow: hidden;
-      flex-shrink: 0; background: var(--green-pale);
+      width: 26px; height: 26px; border-radius: 50%; background: var(--white);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      border: 1px solid var(--green-light);
     }
-    .msg-av img { width: 100%; height: 100%; object-fit: cover; }
+    .msg-av svg { width: 70%; height: 70%; fill: var(--green); }
     .msg-bubble {
       background: var(--white); border-radius: 14px 14px 14px 4px;
       padding: 9px 13px; font-size: .82rem; color: var(--text-dark);
       line-height: 1.5; max-width: 224px;
       box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      white-space: pre-line;
     }
     .chat-msg.user .msg-bubble {
       background: var(--green); color: var(--white);
@@ -580,7 +586,6 @@
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .d1 { transition-delay: .1s; }
     .d2 { transition-delay: .2s; }
-    .d3 { transition-delay: .3s; }
 
     /* ── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 900px) {
@@ -597,14 +602,14 @@
       .card-featured { grid-row: auto; }
       .about-inner { grid-template-columns: 1fr; gap: 36px; }
       .footer-top { grid-template-columns: 1fr; gap: 28px; }
-      .nav-links { display: none; }
+      .nav-links { display: flex; align-items: center; }
       .hamburger { display: flex; }
       .chat-window { width: calc(100vw - 48px); right: 14px; bottom: 86px; }
       .chat-fab { right: 14px; bottom: 14px; }
     }
     @media (max-width: 580px) {
       .card-side { flex-direction: column; }
-      .card-img-side { width: 100%; min-width: auto; height: 76px; }
+      .card-img-side { width: 100%; min-width: auto; height: 76px; padding-top: 10px;}
       .about-section { padding: 60px 0; }
     }
   </style>
@@ -614,25 +619,31 @@
 <!-- ═══ HEADER ═══════════════════════════════════════════ -->
 <header class="site-header" id="top">
   <div class="nav-inner">
-    <a href="#top" class="nav-logo">
-      <div class="nav-logo-img"><img src="images/mascot.jpg" alt="Maison Malai"></div>
+    <a href="#top" class="nav-logo" aria-label="Maison Malai - Accueil">
+      <div class="nav-logo-img">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3B7A50" stroke-width="2.5">
+          <path d="M12 2c-4 4.5-6 7.5-6 11a6 6 0 1 0 12 0c0-3.5-2-6.5-6-11z"/>
+        </svg>
+      </div>
       <span class="nav-logo-text">Maison <b>Malai</b></span>
     </a>
-    <nav>
+    <nav aria-label="Navigation principale">
       <ul class="nav-links">
         <li><a href="#products">Produits</a></li>
         <li><a href="#about">Notre Histoire</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSee-Kfa_oIvenBblX99EgY9fQ08jo7wIBJhM-lH7bs6gp7lUQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Sondage</a></li>
+        <li><a href="javascript:void(0)" onclick="openChat()" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <a href="#products" onclick="toggleMenu()">Produits</a>
     <a href="#about" onclick="toggleMenu()">Notre Histoire</a>
-    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSee-Kfa_oIvenBblX99EgY9fQ08jo7wIBJhM-lH7bs6gp7lUQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" onclick="toggleMenu()">Sondage</a>
+    <a href="javascript:void(0)" onclick="toggleMenu(); openChat();">Contact</a>
   </div>
 </header>
 
@@ -653,7 +664,7 @@
       <span class="underline-word">chaque jour.</span>
     </h1>
     <p class="hero-sub">
-      Maison Malai brings you the everyday dairy essentials you love — fresh, pure, and crafted with care. Inspired by India's beloved dairy tradition, made for every French kitchen.
+      Maison Malai vous apporte les essentiels laitiers du quotidien que vous aimez — frais, purs et fabriqués avec soin. Inspirés d’une riche tradition laitière, réinventés pour toutes les cuisines françaises.
     </p>
     <div class="hero-actions">
       <a href="#products" class="btn-primary">
@@ -666,21 +677,21 @@
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
           <path d="M13 9.5A1.25 1.25 0 0111.75 11H3.5L1 13.5V3A1.25 1.25 0 012.25 1.75H11.75A1.25 1.25 0 0113 3V9.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Ask Maison
+        Poser une question
       </button>
     </div>
     <div class="hero-trust">
       <div class="trust-pill">
         <div class="trust-dot" style="background:var(--green)"></div>
-        Fresh daily supply
+        Livraison fraîche quotidienne
       </div>
       <div class="trust-pill">
         <div class="trust-dot" style="background:var(--sky)"></div>
-        100% natural
+        100% naturel
       </div>
       <div class="trust-pill">
         <div class="trust-dot" style="background:var(--orange)"></div>
-        Family trusted
+        Adopté par les familles
       </div>
     </div>
   </div>
@@ -689,9 +700,24 @@
     <div class="mascot-frame">
       <div class="mascot-blob" aria-hidden="true"></div>
       <div class="mascot-ring" aria-hidden="true"></div>
-      <img src="images/mascot.jpg" alt="Maison Malai mascot — cheerful cow chef" class="mascot-img">
+      <div class="mascot-svg-wrapper">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <circle cx="100" cy="115" r="55" fill="#FFFFFF" stroke="#3B7A50" stroke-width="4"/>
+          <path d="M50 90 C30 80 35 110 50 105 Z" fill="#FFFFFF" stroke="#3B7A50" stroke-width="4"/>
+          <path d="M150 90 C170 80 165 110 150 105 Z" fill="#FFFFFF" stroke="#3B7A50" stroke-width="4"/>
+          <path d="M70 80 Q60 100 80 95 Z" fill="#231410"/>
+          <path d="M125 120 Q140 110 130 135 Z" fill="#231410"/>
+          <path d="M75 110 Q85 100 90 110" fill="none" stroke="#231410" stroke-width="3" stroke-linecap="round"/>
+          <path d="M110 110 Q115 100 125 110" fill="none" stroke="#231410" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="100" cy="135" rx="30" ry="18" fill="#FDF8EE" stroke="#3B7A50" stroke-width="3"/>
+          <circle cx="90" cy="135" r="3" fill="#E07A3A"/>
+          <circle cx="110" cy="135" r="3" fill="#E07A3A"/>
+          <path d="M80 65 Q70 45 100 45 Q130 45 120 65 Z" fill="#FFFFFF" stroke="#3B7A50" stroke-width="3"/>
+          <rect x="82" y="62" width="36" height="10" rx="3" fill="#E07A3A"/>
+        </svg>
+      </div>
       <div class="badge-float badge-float-1">Pure &amp; Naturel</div>
-      <div class="badge-float badge-float-2">200g Paneer — Disponible !</div>
+      <div class="badge-float badge-float-2">Paneer 200g — Disponible !</div>
     </div>
   </div>
 </section>
@@ -721,65 +747,85 @@
       <div>
         <div class="section-label">Nos Produits</div>
         <h2 class="section-title">Simple. Pur.<br>Délicieux.</h2>
-        <p class="products-header-sub">Everyday dairy essentials crafted with the finest ingredients — from our kitchen to yours, every single day.</p>
+        <p class="products-header-sub">Les indispensables laitiers du quotidien, préparés avec les meilleurs ingrédients — de notre atelier à votre table, chaque jour.</p>
       </div>
     </div>
 
     <div class="products-grid">
 
-      <!-- Featured: 200g Paneer -->
+      <!-- Vedette: Paneer 200g -->
       <article class="card-featured fade-up">
         <div class="card-img-featured">
-          <svg class="ph-lg" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="18" y="28" width="74" height="56" rx="10" fill="#3B7A50"/>
-            <rect x="26" y="36" width="58" height="40" rx="7" fill="#5A9E6E"/>
-            <rect x="34" y="44" width="42" height="24" rx="5" fill="#3B7A50"/>
-            <circle cx="55" cy="56" r="8" fill="#EBF5EF"/>
-            <path d="M18 58 Q30 48 42 58 Q55 68 68 58 Q80 48 92 58" stroke="white" stroke-width="1.5" fill="none" opacity="0.35"/>
-            <path d="M18 64 Q30 54 42 64 Q55 74 68 64 Q80 54 92 64" stroke="white" stroke-width="1.5" fill="none" opacity="0.2"/>
+          <svg viewBox="0 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 220px; height: 260px;">
+            <rect x="40" y="30" width="200" height="260" rx="16" fill="#E8F5E9" stroke="#3B7A50" stroke-width="2"/>
+            <rect x="45" y="35" width="190" height="50" rx="8" fill="#3B7A50"/>
+            <text x="140" y="65" font-family="'Fraunces', serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">200g</text>
+            <g id="paneer">
+              <rect x="65" y="100" width="150" height="120" rx="8" fill="#FFF9E6" stroke="#3B7A50" stroke-width="2"/>
+              <line x1="75" y1="115" x2="75" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="90" y1="115" x2="90" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="105" y1="115" x2="105" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="120" y1="115" x2="120" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="135" y1="115" x2="135" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="150" y1="115" x2="150" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="165" y1="115" x2="165" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="180" y1="115" x2="180" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="195" y1="115" x2="195" y2="205" stroke="#E0D5B7" stroke-width="1" opacity="0.6"/>
+              <line x1="65" y1="140" x2="215" y2="140" stroke="#E0D5B7" stroke-width="1" opacity="0.5"/>
+              <line x1="65" y1="165" x2="215" y2="165" stroke="#E0D5B7" stroke-width="1" opacity="0.5"/>
+              <line x1="65" y1="190" x2="215" y2="190" stroke="#E0D5B7" stroke-width="1" opacity="0.5"/>
+              <ellipse cx="100" cy="130" rx="35" ry="25" fill="white" opacity="0.3"/>
+            </g>
+            <rect x="45" y="235" width="190" height="50" rx="8" fill="#F5F5F5" stroke="#3B7A50" stroke-width="1.5"/>
+            <text x="140" y="258" font-family="'DM Sans', sans-serif" font-size="14" font-weight="600" fill="#3B7A50" text-anchor="middle">Paneer Frais</text>
+            <text x="140" y="275" font-family="'DM Sans', sans-serif" font-size="11" font-weight="400" fill="#666" text-anchor="middle">100% Pur Lait</text>
+            <circle cx="250" cy="50" r="20" fill="#E07A3A" opacity="0.9"/>
+            <text x="250" y="58" font-family="'Fraunces', serif" font-size="28" font-weight="900" fill="white" text-anchor="middle">✓</text>
+            <circle cx="50" cy="290" r="18" fill="#5BADD4" opacity="0.8"/>
+            <text x="50" y="296" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">NEUF</text>
           </svg>
         </div>
         <div class="card-body-featured">
           <div class="product-tag"><div class="product-tag-dot"></div>Disponible maintenant</div>
-          <h3 class="product-name-lg">200g Paneer</h3>
+          <h3 class="product-name-lg">Paneer 200g</h3>
           <p class="product-desc">
-            Our fresh, hand-pressed paneer made from pure whole milk. Firm yet soft, perfect for tikka masala, palak paneer, or simply pan-fried with herbs. The everyday staple your kitchen has been waiting for.
+            Notre paneer frais, pressé à la main à partir de lait entier pur. Ferme mais fondant, il est idéal pour vos recettes de tikka masala, palak paneer, ou simplement doré à la poêle avec des herbes. L'incontournable quotidien qui manquait à votre cuisine.
           </p>
           <div class="price-row">
-            <span class="price-na">Price not available</span>
-            <button class="btn-inquire" onclick="openChat()">Inquire</button>
+            <span class="price-na">Prix disponible sur demande</span>
+            <button class="btn-inquire" onclick="openChat()">Se renseigner</button>
           </div>
         </div>
       </article>
 
-      <!-- Coming Soon: Milky Whey -->
+      <!-- Prochainement: Milky Whey -->
       <article class="card-side fade-up d1">
         <div class="card-img-side">
-          <svg class="ph-sm" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <ellipse cx="26" cy="34" rx="16" ry="12" fill="#5BADD4" opacity="0.5"/>
-            <rect x="16" y="10" width="20" height="24" rx="7" fill="#5BADD4" opacity="0.35"/>
-            <path d="M22 10 Q26 4 30 10" stroke="#5BADD4" stroke-width="1.8" fill="none"/>
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 15 L25 60 Q25 65 30 65 L50 65 Q55 65 55 60 L60 15 Z" fill="none" stroke="#5BADD4" stroke-width="2"/>
+            <path d="M22 35 Q22 32 25 32 L55 32 Q58 32 58 35 L55 58 Q55 62 50 62 L30 62 Q25 62 25 58 Z" fill="#5BADD4" opacity="0.3"/>
+            <ellipse cx="35" cy="40" rx="8" ry="12" fill="white" opacity="0.5"/>
           </svg>
         </div>
         <div class="card-body-side">
           <h3 class="product-name-sm">Milky Whey</h3>
-          <p class="product-desc-sm">Nutritious whey drink, naturally rich in protein and goodness.</p>
+          <p class="product-desc-sm">Poudre de lactosérum (Whey powder) de haute qualité pour enrichir vos recettes quotidiennes.</p>
           <span class="badge-soon"><div class="badge-soon-dot"></div>Bientôt disponible</span>
         </div>
       </article>
 
-      <!-- Coming Soon: Curd -->
+      <!-- Prochainement: Curd -->
       <article class="card-side fade-up d2">
         <div class="card-img-side">
-          <svg class="ph-sm" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M8 22 Q8 12 26 12 Q44 12 44 22 L41 38 Q41 44 26 44 Q11 44 11 38 Z" fill="#E07A3A" opacity="0.35"/>
-            <ellipse cx="26" cy="22" rx="18" ry="7" fill="#FDF8EE" opacity="0.7"/>
-            <ellipse cx="26" cy="38" rx="15" ry="5" fill="#E07A3A" opacity="0.22"/>
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 25 Q15 20 20 20 L60 20 Q65 20 65 25 L62 55 Q62 62 55 65 L25 65 Q18 62 18 55 Z" fill="#FFF9E6" stroke="#E07A3A" stroke-width="2"/>
+            <ellipse cx="40" cy="45" rx="22" ry="18" fill="#F5E6D3" opacity="0.7"/>
+            <path d="M50 30 L58 38 Q60 40 58 42 L50 50" fill="none" stroke="#E07A3A" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="card-body-side">
-          <h3 class="product-name-sm">Curd</h3>
-          <p class="product-desc-sm">Set curd, smooth and tangy, from pure farm milk.</p>
+          <h3 class="product-name-sm">Curd (Dahi)</h3>
+          <p class="product-desc-sm">Lait caillé traditionnel, doux et onctueux, issu de lait pur de ferme.</p>
           <span class="badge-soon"><div class="badge-soon-dot"></div>Bientôt disponible</span>
         </div>
       </article>
@@ -796,52 +842,52 @@
     <div class="fade-up">
       <div class="section-label about-label">Notre Histoire</div>
       <h2 class="about-title">
-        Dairy for <em>everyday life</em>,<br>crafted in France.
+        Des produits laitiers pour le <em>quotidien</em>, fabriqués en France.
       </h2>
       <p class="about-body">
-        Maison Malai was born from a simple dream: to bring the reliable, nourishing dairy products that millions love in India to every kitchen in France. Founded by Abhimanyu, our mission is to make wholesome dairy as accessible as a morning baguette.
+        Maison Malai est née d’un rêve simple : apporter dans chaque cuisine en France des produits laitiers sains, nourriciers et authentiques, inspirés de la riche tradition laitière indienne. Fondée par Abhimanyu, notre mission est de rendre le bon lait accessible, aussi simplement que votre baguette du matin.
         <br><br>
-        Inspired by Amul's legacy of trust and quality, we are building Maison Malai as France's everyday dairy companion — honest ingredients, fair prices, and the warmth of a home kitchen in every pack.
+        Inspirés par l’héritage de confiance et de qualité d'Amul, nous construisons Maison Malai comme le compagnon laitier de vos journées : des ingrédients honnêtes, des prix justes et la chaleur d'une cuisine familiale dans chaque emballage.
       </p>
       <div class="founder-card">
         <div class="founder-av">A</div>
         <div>
           <div class="founder-name">Abhimanyu</div>
-          <div class="founder-role">CEO &amp; Founder, Maison Malai</div>
+          <div class="founder-role">Fondateur &amp; CEO, Maison Malai</div>
         </div>
       </div>
     </div>
     <div class="about-values fade-up d1">
       <div class="about-val">
-        <div class="about-val-title">Pure Ingredients Only</div>
-        <div class="about-val-body">We use whole milk and natural processes. No additives, no shortcuts — what goes in is exactly what comes out.</div>
+        <div class="about-val-title">Ingrédients 100% Purs</div>
+        <div class="about-val-body">Nous utilisons exclusivement du lait entier et des procédés naturels. Aucun additif, aucun compromis — la pureté avant tout.</div>
       </div>
       <div class="about-val">
-        <div class="about-val-title">Accessible Every Day</div>
-        <div class="about-val-body">Great dairy should not be a luxury. Maison Malai is priced for every household, every day of the week.</div>
+        <div class="about-val-title">Accessible au Quotidien</div>
+        <div class="about-val-body">Les bons produits laitiers ne devraient pas être un luxe. Les produits Maison Malai sont tarifés pour tous les foyers, tous les jours de la semaine.</div>
       </div>
       <div class="about-val">
-        <div class="about-val-title">A Bridge Between Cultures</div>
-        <div class="about-val-body">From India's rich dairy heritage to French culinary tradition — two great food cultures, together on your plate.</div>
+        <div class="about-val-title">Un Pont Entre Deux Cultures</div>
+        <div class="about-val-body">De la riche culture laitière de l’Inde au savoir-faire culinaire français — deux grands patrimoines réunis dans votre assiette.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ FOOTER ═══════════════════════════════════════════ -->
-<footer id="contact">
+<footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div>
         <div class="footer-logo">Maison <span>Malai</span></div>
-        <p class="footer-tagline">La laiterie du quotidien. Bringing everyday dairy essentials to France with love, quality, and freshness in every pack.</p>
+        <p class="footer-tagline">La laiterie du quotidien. Apporter des produits laitiers essentiels en France avec amour, exigence de qualité et fraîcheur absolue.</p>
       </div>
       <div>
         <div class="footer-col-title">Navigation</div>
         <div class="footer-links">
           <a href="#products">Nos Produits</a>
           <a href="#about">Notre Histoire</a>
-          <a href="#contact">Contact</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSee-Kfa_oIvenBblX99EgY9fQ08jo7wIBJhM-lH7bs6gp7lUQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Sondage</a>
         </div>
       </div>
       <div>
@@ -853,16 +899,16 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&#169; 2026 Maison Malai. Tous droits r&#233;serv&#233;s.</span>
+      <span>&copy; 2026 Maison Malai. Tous droits réservés.</span>
       <div class="footer-socials">
-        <a href="https://www.instagram.com/malaimaison" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://www.instagram.com/malaimaison" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
             <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
           </svg>
         </a>
-        <a href="mailto:maisonmalai2026@gmail.com" aria-label="Email">
+        <a href="mailto:maisonmalai2026@gmail.com" aria-label="Envoyez-nous un email">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
@@ -874,24 +920,28 @@
 </footer>
 
 <!-- ═══ CHATBOT ═══════════════════════════════════════════ -->
-<button class="chat-fab" id="chatFab" aria-label="Chat with Maison" onclick="openChat()">
-  <img src="images/mascot.jpg" alt="">
+<button class="chat-fab" id="chatFab" aria-label="Discuter avec Maison" aria-expanded="false" onclick="openChat()">
+  <svg viewBox="0 0 24 24">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/>
+  </svg>
   <div class="chat-pulse" aria-hidden="true"></div>
 </button>
 
-<div class="chat-window" id="chatWindow" role="dialog" aria-label="Chat with Maison" aria-modal="true">
+<div class="chat-window" id="chatWindow" role="dialog" aria-label="Assistant Maison Malai" aria-modal="true">
   <div class="chat-head">
     <div class="chat-head-av">
-      <img src="images/mascot.jpg" alt="Maison bot">
+      <svg viewBox="0 0 24 24" width="22" height="22">
+        <path d="M12 2a4 4 0 0 0-4 4v4a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4zm6 8.5a6.5 6.5 0 0 1-12 0v-1a.5.5 0 0 0-1 0v1a7.5 7.5 0 0 0 6.5 7.4V21h-3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-3v-2.1a7.5 7.5 0 0 0 6.5-7.4v-1a.5.5 0 0 0-1 0v1z"/>
+      </svg>
     </div>
     <div>
       <div class="chat-bot-name">Maison</div>
       <div class="chat-bot-status">
         <div class="chat-status-dot"></div>
-        Online &middot; Ready to help
+        En ligne &middot; À votre écoute
       </div>
     </div>
-    <button class="chat-x" onclick="closeChat()" aria-label="Close chat">
+    <button class="chat-x" onclick="closeChat()" aria-label="Fermer le chat">
       <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
         <path d="M1 1L12 12M12 1L1 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
@@ -900,9 +950,9 @@
   <div class="chat-msgs" id="chatMsgs"></div>
   <div class="chat-input-row">
     <input type="text" class="chat-input" id="chatInput"
-      placeholder="Ask me anything&#8230;" aria-label="Type a message"
+      placeholder="Posez-moi une question..." aria-label="Votre message"
       onkeydown="if(event.key==='Enter')sendMsg()">
-    <button class="chat-send-btn" onclick="sendMsg()" aria-label="Send">
+    <button class="chat-send-btn" onclick="sendMsg()" aria-label="Envoyer">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <path d="M12.5 7L1.5 1.5L4 7L1.5 12.5L12.5 7Z" fill="white"/>
       </svg>
@@ -913,7 +963,11 @@
 <script>
   // ── MOBILE NAV ──────────────────────────────────────────
   function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
+    const menu = document.getElementById('mobileMenu');
+    const button = document.getElementById('hamburger');
+    const isOpen = menu.classList.toggle('open');
+    button.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
   }
 
   // ── SCROLL ANIMATIONS ───────────────────────────────────
@@ -924,11 +978,13 @@
 
   // ── CHATBOT ─────────────────────────────────────────────
   var chatReady = false;
-  var WELCOME = "Welcome! I am Maison, introducing you to all our products, starting with our 200g Paneer. How can I help you today?";
+  var WELCOME = "Bonjour ! Je suis Maison, votre assistant. Je suis là pour répondre à vos questions sur nos produits ou notre histoire. Que puis-je faire pour vous ?";
 
   function openChat() {
     var win = document.getElementById('chatWindow');
+    var fab = document.getElementById('chatFab');
     win.classList.add('open');
+    fab.setAttribute('aria-expanded', 'true');
     if (!chatReady) {
       chatReady = true;
       setTimeout(function() { addMsg(WELCOME, 'bot'); }, 380);
@@ -937,6 +993,7 @@
 
   function closeChat() {
     document.getElementById('chatWindow').classList.remove('open');
+    document.getElementById('chatFab').setAttribute('aria-expanded', 'false');
   }
 
   function addMsg(text, who) {
@@ -947,10 +1004,7 @@
     if (who === 'bot') {
       var av = document.createElement('div');
       av.className = 'msg-av';
-      var img = document.createElement('img');
-      img.src = 'images/mascot.jpg';
-      img.alt = 'Maison';
-      av.appendChild(img);
+      av.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2a4 4 0 0 0-4 4v4a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4z"/></svg>`;
       wrap.appendChild(av);
     }
 
@@ -972,33 +1026,34 @@
     setTimeout(function() {
       var lo = txt.toLowerCase();
       var reply;
-      if (lo.includes('paneer') || lo.includes('200g')) {
-        reply = "Our 200g Paneer is freshly pressed and ready to order! Please email us at maisonmalai2026@gmail.com for pricing and availability.";
-      } else if (lo.includes('price') || lo.includes('prix') || lo.includes('cost') || lo.includes('combien')) {
-        reply = "Pricing isn't listed online yet. Email us at maisonmalai2026@gmail.com and we'll get back to you quickly!";
-      } else if (lo.includes('whey') || lo.includes('curd') || lo.includes('fromage')) {
-        reply = "Milky Whey and Curd are coming soon! Follow us on Instagram @malaimaison for launch updates.";
-      } else if (lo.includes('instagram') || lo.includes('social') || lo.includes('follow')) {
-        reply = "Find us on Instagram at @malaimaison for updates, recipes, and behind-the-scenes from our dairy kitchen!";
-      } else if (lo.includes('contact') || lo.includes('email') || lo.includes('order') || lo.includes('commande')) {
-        reply = "Reach us at maisonmalai2026@gmail.com — we respond within 24 hours. We'd love to hear from you!";
-      } else if (lo.includes('bonjour') || lo.includes('hello') || lo.includes('hi') || lo.includes('salut')) {
-        reply = "Bonjour! I'm Maison, your friendly dairy guide. Ask me about our products, pricing, or anything else!";
-      } else if (lo.includes('founder') || lo.includes('abhimanyu') || lo.includes('who')) {
-        reply = "Maison Malai was founded by Abhimanyu, with a mission to bring everyday dairy essentials from India's rich tradition to French households.";
+      
+      if (lo.includes('product') || lo.includes('produit')) {
+        reply = "Voici nos 3 produits :\n1. Paneer 200g (Disponible !)\n2. Milky Whey (Poudre de lactosérum / Whey powder)\n3. Curd / Dahi (Lait caillé traditionnel)";
+      } else if (lo.includes('price') || lo.includes('prix') || lo.includes('coût') || lo.includes('tarif')) {
+        reply = "Ne vous inquiétez pas, ce sera très abordable ! Notre fondateur est encore en train de peaufiner les tarifs exacts.";
+      } else if (lo.includes('history') || lo.includes('histoire') || lo.includes('startup') || lo.includes('idée')) {
+        reply = "Maison Malai est une startup en train de bâtir une toute nouvelle idée autour des indispensables laitiers.";
       } else {
-        reply = "Great question! For more details, email us at maisonmalai2026@gmail.com or follow @malaimaison on Instagram.";
+        reply = "Pour toute autre demande, n'hésitez pas à nous contacter directement par e-mail à : maisonmalai2026@gmail.com";
       }
+      
       addMsg(reply, 'bot');
     }, 680);
   }
 
-  // Close on outside click
+  // Fermer la fenêtre de chat lors d'un clic extérieur
   document.addEventListener('click', function(e) {
     var win = document.getElementById('chatWindow');
     var fab = document.getElementById('chatFab');
-    if (!win.contains(e.target) && !fab.contains(e.target)) {
+    var links = document.querySelectorAll('.nav-cta');
+    
+    // Évite la fermeture immédiate si on clique sur un bouton de contact
+    var clickedContact = false;
+    links.forEach(function(l) { if(l.contains(e.target)) clickedContact = true; });
+    
+    if (!win.contains(e.target) && !fab.contains(e.target) && !clickedContact) {
       win.classList.remove('open');
+      fab.setAttribute('aria-expanded', 'false');
     }
   });
 </script>
